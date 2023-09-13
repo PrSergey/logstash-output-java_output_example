@@ -17,12 +17,17 @@ public class JavaOutputExampleTest {
 
     @Test
     public void testJavaOutputExample() {
-        String prefix = "Prefix";
+        String connectionString = "grpcs://ydb.serverless.yandexcloud.net:2135/?database=/ru-central1/b1glvg8scoq6ppp1u1f3/etn9r2rtl5dos3k5dhg8";
+        String saKeyFile = "C:/Users/provo/dev/ydb/authorized_key.json";
+
+        String tableName = "test_table";
         Map<String, Object> configValues = new HashMap<>();
-        configValues.put(JavaOutputExample.PREFIX_CONFIG.name(), prefix);
+        configValues.put(JavaOutputExample.CONNECTION_STRING.name(), connectionString);
+        configValues.put(JavaOutputExample.TABLE_NAME.name(), tableName);
+        configValues.put(JavaOutputExample.SA_KEY_FILE.name(), saKeyFile);
         Configuration config = new ConfigurationImpl(configValues);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        JavaOutputExample output = new JavaOutputExample("test-id", config, null, baos);
+        JavaOutputExample output = new JavaOutputExample("id", config, null, baos);
 
         String sourceField = "message";
         int eventCount = 5;
@@ -39,7 +44,7 @@ public class JavaOutputExampleTest {
         int index = 0;
         int lastIndex = 0;
         while (index < eventCount) {
-            lastIndex = outputString.indexOf(prefix, lastIndex);
+            lastIndex = outputString.indexOf("message", lastIndex);
             Assert.assertTrue("Prefix should exist in output string", lastIndex > -1);
             lastIndex = outputString.indexOf("message " + index);
             Assert.assertTrue("Message should exist in output string", lastIndex > -1);
