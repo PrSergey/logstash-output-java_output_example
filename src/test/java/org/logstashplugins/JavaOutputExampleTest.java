@@ -17,7 +17,7 @@ public class JavaOutputExampleTest {
 
     @Test
     public void testJavaOutputExample() {
-        String connectionString = "grpcs://ydb.serverless.yandexcloud.net:2135/?database=/ru-central1/b1glvg8scoq6ppp1u1f3/etn9r2rtl5dos3k5dhg8";
+        String connectionString = "grpcs://ydb.serverless.yandexcloud.net:2135/?database=";
         String saKeyFile = "C:/Users/provo/dev/ydb/authorized_key.json";
 
         String tableName = "test_table";
